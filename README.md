@@ -29,7 +29,7 @@ davinci-pingcli flows list --help
 
 ## Return Codes
 
-The `davinci-pingcli validate ...` command will return the following return status codes along with a text description of the validation issues:
+The `davinci-pingcli flows list ...` command will return the following return status codes along with a text description of the validation issues:
 
 - `0` - Successful command, no warnings
 - `1` - Unsuccessful (errored) command
