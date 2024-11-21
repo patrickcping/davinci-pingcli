@@ -1,0 +1,6 @@
+testoutput*
+vendor
+env*.sh
+output.log
+generated*
+.davinci-pingcli.yaml
