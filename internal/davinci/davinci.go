@@ -3,6 +3,7 @@ package davinci
 import (
 	"context"
 	"fmt"
+	"log/slog"
 	"strings"
 
 	"github.com/fatih/color"
@@ -65,6 +66,19 @@ func (r DaVinciEnvironment) ReadFlows(ctx context.Context) error {
 	}
 
 	output.Message(listStr, nil)
+
+	return nil
+}
+
+func (r DaVinciEnvironment) DeleteFlowVersion(ctx context.Context, flowID, flowVersionID string) error {
+	// Run the API call
+	flowsResult, err := r.Client.DeleteFlowVersion(r.EnvironmentID, flowID, flowVersionID)
+
+	if err != nil {
+		return err
+	}
+
+	slog.Debug("Delete flow version response", "response", flowsResult, "flowID", flowID, "flowVersionID", flowVersionID)
 
 	return nil
 }
