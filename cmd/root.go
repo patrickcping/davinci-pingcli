@@ -98,6 +98,7 @@ func init() {
 
 	// General function commands
 	rootCmd.AddCommand(
+		connectorsCmd,
 		flowsCmd,
 	)
 
