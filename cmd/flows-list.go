@@ -2,11 +2,11 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/patrickcping/davinci-pingcli/internal/davinci"
 	"github.com/patrickcping/davinci-pingcli/internal/logger"
+	"github.com/patrickcping/davinci-pingcli/internal/output"
 	dvsdk "github.com/samir-gandhi/davinci-client-go/davinci"
 	"github.com/spf13/cobra"
 )
@@ -50,7 +50,9 @@ var flowsListCmd = &cobra.Command{
 		}
 		apiClient, err := dvsdk.NewClient(&cInput)
 		if err != nil {
-			log.Fatalf("Error creating the DaVinci client: %s", err)
+			output.UserFatal("Error creating the DaVinci client", map[string]interface{}{
+				"error": err,
+			})
 		}
 
 		dvEnvironment := davinci.DaVinciEnvironment{
@@ -60,7 +62,7 @@ var flowsListCmd = &cobra.Command{
 
 		err = dvEnvironment.ReadFlows(cmd.Root().Context())
 		if err != nil {
-			log.Fatal(err)
+			output.UserFatal(fmt.Sprintf("%s", err), map[string]interface{}{})
 		}
 
 		os.Exit(0)
