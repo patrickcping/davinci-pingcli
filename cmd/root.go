@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"fmt"
-	"log"
+	"log/slog"
 	"os"
 	"strings"
 
@@ -74,7 +74,7 @@ var rootCmd = &cobra.Command{
 
 		l.Debug().Msgf("PreRun Command called.")
 
-		log.Printf("Done")
+		slog.Debug("PreRun command done")
 
 		return nil
 	},
