@@ -9,6 +9,14 @@ import (
 
 func (r DaVinciEnvironment) DeleteFlowVersion(ctx context.Context, flowID, flowVersionID string) error {
 
+	if flowID == "" {
+		return fmt.Errorf("Flow ID is required")
+	}
+
+	if flowVersionID == "" {
+		return fmt.Errorf("Flow Version ID is required")
+	}
+
 	// Get the flow details
 	flowResult, err := r.Client.ReadFlow(r.EnvironmentID, flowID)
 	if err != nil {
